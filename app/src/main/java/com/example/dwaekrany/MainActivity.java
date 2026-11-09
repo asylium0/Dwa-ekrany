@@ -2,6 +2,7 @@ package com.example.dwaekrany;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
@@ -52,10 +53,38 @@ public class MainActivity extends AppCompatActivity {
         tvLevelValue = findViewById(R.id.tvLevelValue);
         cbNewsletter = findViewById(R.id.cbNewsletter);
 
+        setUpCourseSpinner();
+        setUpLevelSeekBar();
+
+        findViewById(R.id.btnNext).setOnClickListener(v -> openSummary());
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+    }
+
+    private void setUpCourseSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.courses, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spCourse.setAdapter(adapter);
+    }
+
+    private void setUpLevelSeekBar() {
+        tvLevelValue.setText(String.valueOf(sbLevel.getProgress()));
+        sbLevel.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvLevelValue.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) { }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) { }
         });
     }
 
@@ -75,5 +104,4 @@ public class MainActivity extends AppCompatActivity {
                 getString(R.string.registered, number),
                 Snackbar.LENGTH_LONG).show();
     }
-}
 }
