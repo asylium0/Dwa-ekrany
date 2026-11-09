@@ -9,3 +9,8 @@
 ### Pierwszy ekran po powrocie
 ![Pierwszy ekran po powrocie](img/img_3.png)
 
+## Odpowiedzi na pytania
+### Dlaczego rejestracja wyniku jest polem klasy, a nie znajduje się w obsłudze kliknięcia przycisku?
+Ponieważ inne metody są oznaczone jako przestarzałe i to jest najnowszy sposób na robienie tego
+### Co zobaczy ekran wywołujący, gdy użytkownik naciśnie na drugim ekranie przycisk Wstecz?
+Ekran zobaczy RESULT_CANCELED
